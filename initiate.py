@@ -1,10 +1,13 @@
 import requests
+import json
+from absl import app
 
 
-def main():
+def main(argv):
     print("Hello there!! This is a text.")
     res = requests.get("https://catfact.ninja/fact")
-    print(res.text)
+    text = json.loads(res.content)
+    print(text["fact"])
     
 if __name__ == "__main__":
-    main()
+    app.run(main)
